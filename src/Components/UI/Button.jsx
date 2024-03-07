@@ -8,6 +8,7 @@ const Button = ({ children, variant, onClick, type, className }) => {
         "py-[10px] px-[15px] text-xl",
         {
           "bg-primary text-black": variant === "primary",
+          "border bg-transparent text-black": variant === "secondary",
         },
         className
       )}

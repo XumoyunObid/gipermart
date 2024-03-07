@@ -3,7 +3,7 @@ import CartIcon from "./../../assets/icons/CartIcon";
 
 const MainCard = (props) => {
   return (
-    <div className="p-2 flex gap-4 justify-around items-center flex-col shadow-xl w-[214px] h-[323px]">
+    <div className="p-2 flex gap-4 justify-around items-center flex-col w-[214px] h-[323px] border shadow-lg mb-4 rounded-lg">
       <div className="flex items-center justify-center">
         <img className="w-[165px] h-[165px]" src={props.img} alt="" />
       </div>
