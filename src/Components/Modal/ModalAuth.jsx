@@ -6,6 +6,7 @@ import { useState } from "react";
 import useRegister from "../../pages/Home/Service/Mutation/useRegister";
 import { saveState } from "../../Config/storage";
 import useLogin from "../../pages/Home/Service/Mutation/useLogin";
+import { toast } from "react-toastify";
 
 export function MyModal({ isModal: isOpen, setIsModal: setIsOpen }) {
   const { register, handleSubmit, reset } = useForm();
@@ -29,6 +30,12 @@ export function MyModal({ isModal: isOpen, setIsModal: setIsOpen }) {
       onSuccess: (res) => {
         saveState("user", data);
         console.log(data);
+        setIsOpen(!isOpen);
+        toast.success("Logged in successfuly!");
+        reset();
+      },
+      onError: (err) => {
+        toast.error("Wrong email or password");
         reset();
       },
     });

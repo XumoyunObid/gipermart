@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import useGetProducts from "./../Home/Service/Query/useGetProducts";
+import useGetAllProducts from "./../Home/Service/Query/useGetAllProducts";
 import RatingIcon from "./../../assets/icons/RatingIcon";
 import HeartIcon from "./../../assets/icons/HeartIcon";
+import Button from "../../Components/UI/Button";
 
 const SingleProduct = () => {
-  const { data, isLoading } = useGetProducts();
+  const { data, isLoading } = useGetAllProducts();
   const { id } = useParams();
   const product = data?.find((product) => product?.id === parseInt(id));
   return (
@@ -45,17 +46,66 @@ const SingleProduct = () => {
             <HeartIcon /> В избранное
           </button>
         </div>
-        <div className="border-t-2 py-6 flex items-center justify-between">
+        <div className="border-t-2 py-6 flex items-start justify-between">
           <div className="w-1/3 flex items-center justify-center">
-            <img className="w-[435px] h-[435px]" src={product?.img} alt="" />
+            <img src={product?.img} alt="" />
           </div>
           <div className="w-1/3 items-start">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 items-start">
               <p className="text-base font-medium">Объем памяти</p>
-              <span className="px-3 py-2 border-red-600 text-base">128GB</span>
+              <span className="px-3 py-2 border border-red-600 text-base">
+                {product?.details?.rom}GB
+              </span>
             </div>
             <div>
-              <h1 className="text-lg font-medium">Характеристики</h1>
+              <h1 className="text-lg font-medium py-4">Характеристики</h1>
+              <ul className="flex flex-col gap-3">
+                <li>
+                  <span className="text-base text-gray-500">Цвет:</span>{" "}
+                  {product?.details?.color}
+                </li>
+                <li>
+                  <span className="text-base text-gray-500">Экран:</span>{" "}
+                  {product?.details?.screen}
+                </li>
+                <li>
+                  <span className="text-base text-gray-500">
+                    Оперативная память:
+                  </span>{" "}
+                  {product?.details?.ram}GB
+                </li>
+                <li>
+                  <span className="text-base text-gray-500">Память:</span>{" "}
+                  {product?.details?.rom}GB
+                </li>
+                {product?.details?.cpu ? (
+                  <li>
+                    <span className="text-base text-gray-500">Процессор:</span>{" "}
+                    {product?.details?.cpu}
+                  </li>
+                ) : (
+                  ""
+                )}
+                {product?.details?.screentype ? (
+                  <li>
+                    <span className="text-base text-gray-500">
+                      Тип матрицы экрана:
+                    </span>{" "}
+                    {product?.details?.screentype}
+                  </li>
+                ) : (
+                  ""
+                )}
+              </ul>
+            </div>
+          </div>
+          <div className="w-1/3 items-start">
+            <div className="p-4 flex flex-col gap-5 border-2 w-[340px]">
+              <h2 className="text-gray-500 text-lg line-through font-semibold">
+                74 990.00 Сум
+              </h2>
+              <h1 className="text-4xl font-semibold">{product?.price} Сум</h1>
+              <Button variant="primary">В корзину</Button>
             </div>
           </div>
         </div>

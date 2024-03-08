@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import PhoneIcon from "./../../assets/icons/PhoneIcon";
 import LogoIcon from "./../../assets/icons/LogoIcon";
 import Button from "../UI/Button";
@@ -11,10 +11,15 @@ import CartIcon from "./../../assets/icons/CartIcon";
 import { MyDialog } from "../Modal/Modal";
 import { MyModal } from "../Modal/ModalAuth";
 import { loadState } from "../../Config/storage";
+import productReducer from "./../../Redux/Reducers/product-reducer";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModal, setIsModal] = useState(false);
+  const { count } = useSelector((state) => state.productReducer);
+  const navigate = useNavigate();
+  console.log(count);
 
   const token = loadState("user");
 
@@ -24,6 +29,10 @@ const Header = () => {
 
   const authModal = () => {
     setIsModal(true);
+  };
+
+  const cartNavigate = () => {
+    navigate("/cart");
   };
 
   return (
@@ -95,10 +104,16 @@ const Header = () => {
               <HeartIcon /> Избранное
             </button>
           </li>
-          <li>
-            <button className="flex flex-col items-center">
+          <li className="relative">
+            <button
+              className="flex flex-col items-center"
+              onClick={cartNavigate}
+            >
               <CartIcon /> Корзина
             </button>
+            <span className="px-2 bg-red-600 text-white flex items-center justify-center rounded-full absolute top-[-20px] right-0">
+              {count}
+            </span>
           </li>
         </ul>
       </div>

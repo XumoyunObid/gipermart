@@ -11,7 +11,7 @@ const Discount = () => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 2500,
-    autoplaySpeed: 2500,
+    autoplaySpeed: 4000,
     cssEase: "linear",
     focusOnSelect: true,
   };

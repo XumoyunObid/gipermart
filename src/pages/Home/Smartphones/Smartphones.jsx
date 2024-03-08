@@ -8,7 +8,7 @@ import { SampleNextArrow, SamplePrevArrow } from "../../../Components/Arrows";
 const Smartphones = () => {
   const { data, isLoading } = useGetProducts();
   const settings = {
-    focusOnSelect: true,
+    // focusOnSelect: true,
     infinite: true,
     slidesToShow: 6,
     slidesToScroll: 1,
@@ -28,9 +28,7 @@ const Smartphones = () => {
           <Slider {...settings}>
             {data?.map((item) => (
               <li key={item.id}>
-                <Link to={`/products/${item.id}`}>
-                  <MainCard {...item} />
-                </Link>
+                <MainCard {...item} />
               </li>
             ))}
           </Slider>
