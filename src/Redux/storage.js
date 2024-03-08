@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productReducer from "./Reducers/product-reducer";
+import { storageMiddleWare } from "./Reducers/middleware";
+
 import { saveState } from "../Config/storage";
+import productReducer from "./Reducers/product-reducer";
 
 export const store = configureStore({
   reducer: {
     productReducer,
   },
-  middleware: (defaultMiddleware) => defaultMiddleware(),
+  middleware: (defaultMiddleware) =>
+    defaultMiddleware().prepend(storageMiddleWare.middleware),
 });
 
 store.subscribe(() => {

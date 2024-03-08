@@ -4,11 +4,19 @@ import useGetAllProducts from "./../Home/Service/Query/useGetAllProducts";
 import RatingIcon from "./../../assets/icons/RatingIcon";
 import HeartIcon from "./../../assets/icons/HeartIcon";
 import Button from "../../Components/UI/Button";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../Redux/Reducers/product-reducer";
+import { toast } from "react-toastify";
 
 const SingleProduct = () => {
   const { data, isLoading } = useGetAllProducts();
   const { id } = useParams();
   const product = data?.find((product) => product?.id === parseInt(id));
+  const dispatch = useDispatch();
+
+  const handleAdd = () => {
+    dispatch(addProduct(product));
+  };
   return (
     <div>
       <div className="shadow-xl">
@@ -105,7 +113,9 @@ const SingleProduct = () => {
                 74 990.00 Сум
               </h2>
               <h1 className="text-4xl font-semibold">{product?.price} Сум</h1>
-              <Button variant="primary">В корзину</Button>
+              <Button variant="primary" onClick={handleAdd}>
+                В корзину
+              </Button>
             </div>
           </div>
         </div>

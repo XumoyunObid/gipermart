@@ -1,17 +1,15 @@
-// import { createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
+import { createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 
-// import {
-//   addProduct,
-// } from "./productReducer.js";
+import { addProduct, removeProduct, setCount, totalPrice } from "./product-reducer";
 
-// const storageMiddleWare = createListenerMiddleware();
+const storageMiddleWare = createListenerMiddleware();
 
-// storageMiddleWare.startListening({
-//   matcher: isAnyOf(addProduct),
-//   effect: (_, api) => {
-//     api.dispatch(totalPrice());
-//     api.dispatch(setCount());
-//   },
-// });
+storageMiddleWare.startListening({
+  matcher: isAnyOf(addProduct, removeProduct),
+  effect: (_, api) => {
+    api.dispatch(totalPrice());
+    api.dispatch(setCount());
+  },
+});
 
-// export { storageMiddleWare };
+export { storageMiddleWare };

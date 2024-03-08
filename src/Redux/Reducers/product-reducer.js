@@ -4,12 +4,20 @@ import { loadState } from "../../Config/storage";
 const initialState = loadState("product") || {
   products: [],
   count: 0,
+  totalPrice: 0,
 };
 
 const productReducer = createSlice({
   name: "product",
   initialState,
   reducers: {
+    totalPrice: (state) => {
+      const price = state.products.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.userPrice,
+        0
+      );
+      return { ...state, totalPrice: price };
+    },
     setCount: (state) => {
       const count = state.products.reduce(
         (accumulator, currentValue) => accumulator + currentValue.userCount,
@@ -27,7 +35,7 @@ const productReducer = createSlice({
             {
               ...action.payload,
               userCount: 1,
-              // userPrice: action.payload.price,
+              userPrice: action.payload.price,
             },
           ],
         };
@@ -46,4 +54,5 @@ const productReducer = createSlice({
 });
 
 export default productReducer.reducer;
-export const { addProduct, setCount, removeProduct } = productReducer.actions;
+export const { addProduct, setCount, removeProduct, totalPrice } =
+  productReducer.actions;

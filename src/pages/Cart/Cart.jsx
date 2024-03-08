@@ -4,7 +4,8 @@ import CartCard from "./Components/CartCard";
 import Button from "../../Components/UI/Button";
 
 const Cart = () => {
-  const { products } = useSelector((state) => state.productReducer);
+  const { products, count, totalPrice } = useSelector((state) => state.productReducer);
+
 
   return (
     <div className="container py-6">
@@ -18,9 +19,9 @@ const Cart = () => {
         <div className="bg-neutral w-1/5">
           <div className="p-6 flex flex-col gap-4 items-start">
             <h1 className="text-2xl font-medium">В корзине</h1>
-            <p>Товаров: 0</p>
+            <p>Товаров: {count}</p>
             <p className="text-red-500">Введите промокод</p>
-            <h2 className="text-2xl font-semibold">156 211.00 Сум</h2>
+            <h2 className="text-2xl font-semibold">{totalPrice} Сум</h2>
           </div>
           <Button variant="primary" className="w-full">
             Оформить заказ

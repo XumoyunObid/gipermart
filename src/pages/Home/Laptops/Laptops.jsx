@@ -8,7 +8,7 @@ import { SampleNextArrow, SamplePrevArrow } from "../../../Components/Arrows";
 const Laptops = () => {
   const { data, isLoading } = useGetLaptops();
   const settings = {
-    focusOnSelect: true,
+    // focusOnSelect: true,
     infinite: true,
     slidesToShow: 6,
     slidesToScroll: 1,
@@ -24,23 +24,12 @@ const Laptops = () => {
           Ноутбуки, планшеты и компьютеры
         </h1>
       </div>
-      {/* <ul className="flex items-center gap-6">
-        {data?.map((item) => (
-          <li key={item.id}>
-            <Link to={`/products/${item.id}`}>
-              <MainCard {...item} />
-            </Link>
-          </li>
-        ))}
-      </ul> */}
       <div className="slider-container py-5">
         <ul>
           <Slider {...settings}>
             {data?.map((item) => (
               <li key={item.id}>
-                <Link to={`/products/${item.id}`}>
-                  <MainCard {...item} />
-                </Link>
+                <MainCard {...item} />
               </li>
             ))}
           </Slider>
