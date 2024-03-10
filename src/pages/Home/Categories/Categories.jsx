@@ -15,6 +15,7 @@ const Categories = () => {
     autoplaySpeed: 5000,
     cssEase: "linear",
     autoplay: true,
+    arrows: false
   };
   return (
     <div className="container mt-8">

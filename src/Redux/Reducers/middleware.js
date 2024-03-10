@@ -6,6 +6,7 @@ import {
   setCount,
   totalPrice,
   toggleAmmount,
+  removeAllProduct,
 } from "./product-reducer";
 
 import {
@@ -22,7 +23,8 @@ storageMiddleWare.startListening({
     removeProduct,
     toggleAmmount,
     addWishlist,
-    removeWishlist
+    removeWishlist,
+    removeAllProduct
   ),
   effect: (_, api) => {
     api.dispatch(totalPrice());

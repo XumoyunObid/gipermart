@@ -50,6 +50,12 @@ const productReducer = createSlice({
         ),
       };
     },
+    removeAllProduct: (state) => {
+      return {
+        ...state,
+        products: [],
+      };
+    },
     toggleAmmount: (state, action) => {
       if (action.payload.type === "ADD") {
         const newProducts = state.products.map((item) => {
@@ -88,4 +94,5 @@ export const {
   removeProduct,
   totalPrice,
   toggleAmmount,
+  removeAllProduct,
 } = productReducer.actions;

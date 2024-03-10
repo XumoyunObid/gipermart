@@ -8,9 +8,14 @@ import {
   removeProduct,
   toggleAmmount,
 } from "../../../Redux/Reducers/product-reducer";
+import {
+  addWishlist,
+  removeWishlist,
+} from "../../../Redux/Reducers/wishlist-reducer";
 
 const CartCard = ({ id, title, price, img, userCount }) => {
   const dispatch = useDispatch();
+  const [wishBtn, setWishBtn] = useState(false);
 
   const handleDelete = () => {
     dispatch(removeProduct({ id }));
@@ -25,6 +30,16 @@ const CartCard = ({ id, title, price, img, userCount }) => {
     }
   };
 
+  const handleLike = () => {
+    dispatch(addWishlist({ id }));
+    setWishBtn(!wishBtn);
+  };
+
+  const handleDisLike = () => {
+    dispatch(removeWishlist({ id }));
+    setWishBtn(!wishBtn);
+  };
+
   return (
     <div className="flex border-b-2 py-6 justify-between">
       <div className="1/4">
@@ -33,9 +48,21 @@ const CartCard = ({ id, title, price, img, userCount }) => {
       <div className="flex flex-col gap-5 w-1/2">
         <h1 className="text-2xl font-bold">{title}</h1>
         <div className="flex gap-9 items-center">
-          <button className="text-gray-500 items-center flex gap-3">
-            <HeartIcon /> В избранное
-          </button>
+          {!wishBtn ? (
+            <button
+              className="text-gray-500 items-center flex gap-3"
+              onClick={handleLike}
+            >
+              <i className="fa-regular fa-heart"></i> В избранное
+            </button>
+          ) : (
+            <button
+              onClick={handleDisLike}
+              className="text-gray-500 items-center flex gap-3"
+            >
+              <i className="fa-solid fa-heart text-red-600"></i>В избранное
+            </button>
+          )}
           <button
             className="text-gray-500 items-center flex gap-3"
             onClick={handleDelete}

@@ -1,10 +1,16 @@
-import { useSelector } from "react-redux";
-import productReducer from "./../../Redux/Reducers/product-reducer";
+import { useDispatch, useSelector } from "react-redux";
+import productReducer, {
+  removeAllProduct,
+} from "./../../Redux/Reducers/product-reducer";
 import CartCard from "./Components/CartCard";
 import Button from "../../Components/UI/Button";
 import { useNavigate } from "react-router-dom";
+import { loadState } from "../../Config/storage";
+import { toast } from "react-toastify";
 
 const Cart = () => {
+  const token = loadState("user");
+  const dispatch = useDispatch();
   const { products, count, totalPrice } = useSelector(
     (state) => state.productReducer
   );
@@ -15,6 +21,14 @@ const Cart = () => {
     navigate("/");
   };
 
+  const handleBuy = () => {
+    if (!token) {
+      toast.error("Log in or register first!");
+    } else {
+      toast.success("Products are successfuly bought!");
+      dispatch(removeAllProduct(products));
+    }
+  };
   return (
     <div className="container py-6">
       {products.length ? (
@@ -33,7 +47,7 @@ const Cart = () => {
                 <p className="text-red-500">Введите промокод</p>
                 <h2 className="text-2xl font-semibold">{totalPrice} Сум</h2>
               </div>
-              <Button variant="primary" className="w-full">
+              <Button variant="primary" className="w-full" onClick={handleBuy}>
                 Оформить заказ
               </Button>
             </div>
