@@ -50,9 +50,42 @@ const productReducer = createSlice({
         ),
       };
     },
+    toggleAmmount: (state, action) => {
+      if (action.payload.type === "ADD") {
+        const newProducts = state.products.map((item) => {
+          if (item.id === action.payload.id) {
+            return {
+              ...item,
+              userCount: item.userCount + 1,
+              userPrice: (item.userCount + 1) * item.price,
+            };
+          }
+          return item;
+        });
+        return { ...state, products: newProducts };
+      }
+      if (action.payload.type === "REMOVE") {
+        const newProducts = state.products.map((item) => {
+          if (item.id === action.payload.id) {
+            return {
+              ...item,
+              userCount: item.userCount - 1,
+              userPrice: (item.userCount - 1) * item.price,
+            };
+          }
+          return item;
+        });
+        return { ...state, products: newProducts };
+      }
+    },
   },
 });
 
 export default productReducer.reducer;
-export const { addProduct, setCount, removeProduct, totalPrice } =
-  productReducer.actions;
+export const {
+  addProduct,
+  setCount,
+  removeProduct,
+  totalPrice,
+  toggleAmmount,
+} = productReducer.actions;

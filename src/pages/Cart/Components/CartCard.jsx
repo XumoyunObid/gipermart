@@ -4,30 +4,34 @@ import TrashIcon from "../../../assets/icons/TrashIcon";
 import MinusIcon from "./../../../assets/icons/MinusIcon";
 import PlusIcon from "./../../../assets/icons/PlusIcon";
 import { useDispatch } from "react-redux";
-import { removeProduct } from "../../../Redux/Reducers/product-reducer";
+import {
+  removeProduct,
+  toggleAmmount,
+} from "../../../Redux/Reducers/product-reducer";
 
-const CartCard = (props) => {
-  const [count, setCount] = useState(0);
+const CartCard = ({ id, title, price, img, userCount }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(removeProduct(props));
+    dispatch(removeProduct({ id }));
   };
 
   const handleInc = () => {
-    setCount(count + 1);
+    dispatch(toggleAmmount({ type: "ADD", id }));
   };
   const handleDec = () => {
-    setCount(count - 1);
+    if (userCount > 1) {
+      dispatch(toggleAmmount({ type: "REMOVE", id }));
+    }
   };
 
   return (
     <div className="flex border-b-2 py-6 justify-between">
       <div className="1/4">
-        <img src={props.img} alt="" />
+        <img src={img} alt="" />
       </div>
       <div className="flex flex-col gap-5 w-1/2">
-        <h1 className="text-2xl font-bold">{props.title}</h1>
+        <h1 className="text-2xl font-bold">{title}</h1>
         <div className="flex gap-9 items-center">
           <button className="text-gray-500 items-center flex gap-3">
             <HeartIcon /> В избранное
@@ -41,7 +45,7 @@ const CartCard = (props) => {
         </div>
       </div>
       <div className="flex flex-col gap-5 w-1/4 items-start">
-        <h2 className="text-2xl font-bold">{props.price} Сум</h2>
+        <h2 className="text-2xl font-bold">{price} Сум</h2>
         <div className="bg-gray-400 p-[2px] flex items-center gap-6">
           <button
             className="flex items-center justify-center px-3 py-5 bg-white text-base"
@@ -49,7 +53,7 @@ const CartCard = (props) => {
           >
             <MinusIcon />
           </button>
-          <span className="text-lg">{count}</span>
+          <span className="text-lg">{userCount}</span>
           <button
             className="flex items-center justify-center px-3 py-3 bg-white text-base"
             onClick={handleInc}
