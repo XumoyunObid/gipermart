@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import productReducer, {
-  removeAllProduct,
-} from "./../../Redux/Reducers/product-reducer";
+import productReducer from "./../../Redux/Reducers/product-reducer";
 import CartCard from "./Components/CartCard";
 import Button from "../../Components/UI/Button";
 import { useNavigate } from "react-router-dom";
@@ -25,8 +23,7 @@ const Cart = () => {
     if (!token) {
       toast.error("Зарегистрируйтесь или авторизуйтесь!");
     } else {
-      toast.success("Продукты куплены успешно!");
-      dispatch(removeAllProduct(products));
+      navigate("/checkout")
     }
   };
   return (

@@ -15,6 +15,8 @@ import {
   setWishlistCount,
 } from "./wishlist-reducer";
 
+import { addOrder, removeOrder } from "./order-reducer";
+
 const storageMiddleWare = createListenerMiddleware();
 
 storageMiddleWare.startListening({
@@ -24,7 +26,9 @@ storageMiddleWare.startListening({
     toggleAmmount,
     addWishlist,
     removeWishlist,
-    removeAllProduct
+    removeAllProduct,
+    addOrder,
+    removeOrder
   ),
   effect: (_, api) => {
     api.dispatch(totalPrice());

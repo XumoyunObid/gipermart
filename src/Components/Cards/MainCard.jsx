@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HeartIcon from "../../assets/icons/HeartIcon";
 import Button from "../UI/Button";
 import CartIcon from "./../../assets/icons/CartIcon";
@@ -20,7 +20,9 @@ const MainCard = (props) => {
   const [wishBtn, setWishBtn] = useState(false);
   const dispatch = useDispatch();
 
-  
+  const wishlist = loadState("wishlist");
+  console.log(wishlist.wishlistProducts);
+
   const handleAddProduct = () => {
     dispatch(addProduct(props));
     setShowBtn(!showBtn);
