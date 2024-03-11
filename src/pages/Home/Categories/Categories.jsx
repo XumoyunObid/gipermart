@@ -15,7 +15,7 @@ const Categories = () => {
     autoplaySpeed: 5000,
     cssEase: "linear",
     autoplay: true,
-    arrows: false
+    arrows: false,
   };
   return (
     <div className="container mt-8">
@@ -24,7 +24,7 @@ const Categories = () => {
           <Slider {...settings}>
             {data?.map((item) => (
               <li key={item.id}>
-                <Link>
+                <Link to={`/category/${item.datakey}`}>
                   <CategoryCard {...item} />
                 </Link>
               </li>

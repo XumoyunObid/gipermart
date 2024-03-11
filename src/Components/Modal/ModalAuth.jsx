@@ -18,9 +18,14 @@ export function MyModal({ isModal: isOpen, setIsModal: setIsOpen }) {
     mutate(data, {
       onSuccess: (res) => {
         saveState("user", data);
-        console.log(res);
+        console.log(data);
+        setIsOpen(!isOpen);
+        toast.success("Вы успешно вошли в систему!");
         reset();
-        // client.invalidateQueries(["todo"]);
+      },
+      onError: (err) => {
+        toast.error("Неправильный адрес электронной почты или пароль");
+        reset();
       },
     });
   };
@@ -31,11 +36,11 @@ export function MyModal({ isModal: isOpen, setIsModal: setIsOpen }) {
         saveState("user", data);
         console.log(data);
         setIsOpen(!isOpen);
-        toast.success("Logged in successfuly!");
+        toast.success("Вы успешно вошли в систему!");
         reset();
       },
       onError: (err) => {
-        toast.error("Wrong email or password");
+        toast.error("Неправильный адрес электронной почты или пароль");
         reset();
       },
     });

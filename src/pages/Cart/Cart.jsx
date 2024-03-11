@@ -23,9 +23,9 @@ const Cart = () => {
 
   const handleBuy = () => {
     if (!token) {
-      toast.error("Log in or register first!");
+      toast.error("Зарегистрируйтесь или авторизуйтесь!");
     } else {
-      toast.success("Products are successfuly bought!");
+      toast.success("Продукты куплены успешно!");
       dispatch(removeAllProduct(products));
     }
   };

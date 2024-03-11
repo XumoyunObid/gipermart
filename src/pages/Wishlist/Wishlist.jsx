@@ -15,18 +15,18 @@ const Wishlist = () => {
 
   return (
     <div className="container py-6">
-      {!wishlistProducts.length && (
+      {!wishlistProducts.length ? (
         <div className="flex flex-col items-center gap-3">
-        <span>
-          <i className="fa-solid fa-cart-arrow-down text-5xl text-primary"></i>
-        </span>
-        <h1 className="text-4xl font-semibold">Избранные пуста</h1>
-        <p>Но вы всегда можете ее наполнить</p>
-        <Button variant="primary" onClick={toHome}>
-          На главную
-        </Button>
-      </div>
-      )}
+          <span>
+            <i className="fa-solid fa-cart-arrow-down text-5xl text-primary"></i>
+          </span>
+          <h1 className="text-4xl font-semibold">Избранные пуста</h1>
+          <p>Но вы всегда можете ее наполнить</p>
+          <Button variant="primary" onClick={toHome}>
+            На главную
+          </Button>
+        </div>
+      ) : (
         <div>
           <h1 className="text-lg font-semibold py-4">Избранные товары</h1>
           <div className="flex items-start justify-between">
@@ -37,7 +37,7 @@ const Wishlist = () => {
             </div>
           </div>
         </div>
-      
+      )}
     </div>
   );
 };

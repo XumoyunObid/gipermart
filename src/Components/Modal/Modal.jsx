@@ -1,11 +1,16 @@
-import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import useGetCategories from "../../pages/Home/Service/Query/UseGetCategories";
 import CategoryCard from "../../pages/Home/Categories/Components/CategoryCard";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function MyDialog({ isOpen, setIsOpen }) {
   const { data, isLoading } = useGetCategories();
+  const navigate = useNavigate();
+
+  const handleOpenCategory = (datakey) => {
+    navigate(`/category/${datakey}`);
+    setIsOpen(!isOpen);
+  };
 
   return (
     <Dialog
@@ -21,9 +26,12 @@ export function MyDialog({ isOpen, setIsOpen }) {
         {/* The actual dialog panel  */}
         <Dialog.Panel className="mx-auto max-w-s[1087px] rounded bg-white py-[52px] px-[58px] grid grid-cols-3 gap-5 grid-rows-2">
           {data?.map((item) => (
-            <Link key={item.id}>
+            <button
+              key={item.id}
+              onClick={() => handleOpenCategory(item.datakey)}
+            >
               <CategoryCard {...item} />
-            </Link>
+            </button>
           ))}
         </Dialog.Panel>
       </div>

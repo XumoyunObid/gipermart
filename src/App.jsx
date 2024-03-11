@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="products" element={<Products />} />
+          <Route path="category/:datakey" element={<Products />} />
           <Route path="products/:id" element={<SingleProduct />} />
           <Route path="cart" element={<Cart />} />
           <Route path="wishlist" element={<Wishlist />} />

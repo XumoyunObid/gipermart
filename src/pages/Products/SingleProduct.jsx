@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useGetAllProducts from "./../Home/Service/Query/useGetAllProducts";
 import RatingIcon from "./../../assets/icons/RatingIcon";
@@ -7,15 +7,30 @@ import Button from "../../Components/UI/Button";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../Redux/Reducers/product-reducer";
 import { toast } from "react-toastify";
+import {
+  addWishlist,
+  removeWishlist,
+} from "../../Redux/Reducers/wishlist-reducer";
 
 const SingleProduct = () => {
   const { data, isLoading } = useGetAllProducts();
+  const [wishBtn, setWishBtn] = useState(false);
   const { id } = useParams();
   const product = data?.find((product) => product?.id === parseInt(id));
   const dispatch = useDispatch();
 
   const handleAdd = () => {
     dispatch(addProduct(product));
+  };
+
+  const handleLike = () => {
+    dispatch(addWishlist(product));
+    setWishBtn(!wishBtn);
+  };
+
+  const handleDisLike = () => {
+    dispatch(removeWishlist(product));
+    setWishBtn(!wishBtn);
   };
   return (
     <div>
@@ -50,9 +65,19 @@ const SingleProduct = () => {
           <span className="flex gap-3 items-center text-green-500">
             <RatingIcon /> (0)
           </span>
-          <button className="flex items-center gap-3">
+          {/* <button className="flex items-center gap-3">
             <HeartIcon /> В избранное
-          </button>
+          </button> */}
+          {!wishBtn ? (
+            <button className="flex items-center gap-3" onClick={handleLike}>
+              <HeartIcon /> В избранное
+            </button>
+          ) : (
+            <button onClick={handleDisLike} className="flex items-center gap-3">
+              <i className="fa-solid fa-heart text-red-600 text-[22px]"></i> В
+              избранное
+            </button>
+          )}
         </div>
         <div className="border-t-2 py-6 flex items-start justify-between">
           <div className="w-1/3 flex items-center justify-center">
