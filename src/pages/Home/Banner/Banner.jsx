@@ -1,5 +1,7 @@
 import React from "react";
-import banner from "../../../assets/images/banner.png";
+import banner1 from "../../../assets/images/banner1.jpg";
+import banner2 from "../../../assets/images/banner2.jpg";
+import banner3 from "../../../assets/images/banner3.png";
 import Slider from "react-slick";
 import { SampleNextArrow, SamplePrevArrow } from "../../../Components/Arrows";
 const Banner = () => {
@@ -21,14 +23,14 @@ const Banner = () => {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        <div className="w-full px-1">
-          <img className="w-full" src={banner} alt="" />
+        <div className="w-full">
+          <img className="w-full" src={banner1} alt="" />
         </div>
-        <div className="w-full px-1">
-          <img className="w-full" src={banner} alt="" />
+        <div className="w-full">
+          <img className="w-full" src={banner2} alt="" />
         </div>
-        <div className="w-full px-1">
-          <img className="w-full" src={banner} alt="" />
+        <div className="w-full">
+          <img className="w-full" src={banner3} alt="" />
         </div>
       </Slider>
     </div>

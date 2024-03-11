@@ -21,7 +21,7 @@ const MainCard = (props) => {
   const dispatch = useDispatch();
 
   const wishlist = loadState("wishlist");
-  console.log(wishlist.wishlistProducts);
+  // console.log(wishlist.wishlistProducts);
 
   const handleAddProduct = () => {
     dispatch(addProduct(props));
