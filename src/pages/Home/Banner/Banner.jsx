@@ -24,13 +24,13 @@ const Banner = () => {
     <div className="slider-container">
       <Slider {...settings}>
         <div className="w-full">
-          <img className="w-full" src={banner1} alt="" />
+          <img className="w-full h-[465px]" src={banner1} alt="" />
         </div>
         <div className="w-full">
-          <img className="w-full" src={banner2} alt="" />
+          <img className="w-full h-[465px]" src={banner2} alt="" />
         </div>
         <div className="w-full">
-          <img className="w-full" src={banner3} alt="" />
+          <img className="w-full h-[465px]" src={banner3} alt="" />
         </div>
       </Slider>
     </div>

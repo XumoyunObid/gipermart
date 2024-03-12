@@ -95,7 +95,7 @@ const Header = () => {
         >
           <MenuIcon /> Каталог
         </Button>
-        <div className="py-[12px] px-4 border-2 flex items-center justify-between w-full relative">
+        <div className="py-[12px] px-4 border-2 bg-white flex items-center justify-between w-full relative">
           <input
             onFocus={() => setShow(true)}
             type="text"

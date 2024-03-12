@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useGetAllProducts from "./../Home/Service/Query/useGetAllProducts";
 import RatingIcon from "./../../assets/icons/RatingIcon";
 import HeartIcon from "./../../assets/icons/HeartIcon";
 import Button from "../../Components/UI/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../Redux/Reducers/product-reducer";
 import { toast } from "react-toastify";
 import {
@@ -80,12 +80,12 @@ const SingleProduct = () => {
           <div className="w-1/3 flex items-center justify-center">
             <img src={product?.img} alt="" />
           </div>
-          {product?.details ? (
+          {product ? (
             <div className="w-1/3 items-start">
               <div className="flex flex-col gap-2 items-start">
                 <p className="text-base font-medium">Объем памяти</p>
                 <span className="px-3 py-2 border border-red-600 text-base">
-                  {product?.details?.rom}GB
+                  {product?.rom}GB
                 </span>
               </div>
               <div>
@@ -93,38 +93,38 @@ const SingleProduct = () => {
                 <ul className="flex flex-col gap-3">
                   <li>
                     <span className="text-base text-gray-500">Цвет:</span>{" "}
-                    {product?.details?.color}
+                    {product?.color}
                   </li>
                   <li>
                     <span className="text-base text-gray-500">Экран:</span>{" "}
-                    {product?.details?.screen}
+                    {product?.screen}
                   </li>
                   <li>
                     <span className="text-base text-gray-500">
                       Оперативная память:
                     </span>{" "}
-                    {product?.details?.ram}GB
+                    {product?.ram}GB
                   </li>
                   <li>
                     <span className="text-base text-gray-500">Память:</span>{" "}
-                    {product?.details?.rom}GB
+                    {product?.rom}GB
                   </li>
-                  {product?.details?.cpu ? (
+                  {product?.cpu ? (
                     <li>
                       <span className="text-base text-gray-500">
                         Процессор:
                       </span>{" "}
-                      {product?.details?.cpu}
+                      {product?.cpu}
                     </li>
                   ) : (
                     ""
                   )}
-                  {product?.details?.screentype ? (
+                  {product?.screentype ? (
                     <li>
                       <span className="text-base text-gray-500">
                         Тип матрицы экрана:
                       </span>{" "}
-                      {product?.details?.screentype}
+                      {product?.screentype}
                     </li>
                   ) : (
                     ""

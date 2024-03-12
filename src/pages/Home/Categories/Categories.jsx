@@ -18,7 +18,7 @@ const Categories = () => {
     arrows: false,
   };
   return (
-    <div className="container mt-8">
+    <div className="container my-10">
       <div className="slider-container">
         <ul className="">
           <Slider {...settings}>

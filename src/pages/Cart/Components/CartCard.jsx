@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeartIcon from "../../../assets/icons/HeartIcon";
 import TrashIcon from "../../../assets/icons/TrashIcon";
 import MinusIcon from "./../../../assets/icons/MinusIcon";
 import PlusIcon from "./../../../assets/icons/PlusIcon";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   removeProduct,
   toggleAmmount,
@@ -14,8 +14,13 @@ import {
 } from "../../../Redux/Reducers/wishlist-reducer";
 
 const CartCard = ({ id, title, price, img, userCount }) => {
+  const { wishlistProducts } = useSelector((state) => state.wishlistReducer);
   const dispatch = useDispatch();
   const [wishBtn, setWishBtn] = useState(false);
+
+  useEffect(() => {
+    setWishBtn(wishlistProducts.some((el) => el.id === id));
+  }, [id, wishlistProducts]);
 
   const handleDelete = () => {
     dispatch(removeProduct({ id }));
