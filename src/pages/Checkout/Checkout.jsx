@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Button from "../../Components/UI/Button";
 import { useDispatch, useSelector } from "react-redux";
-import productReducer from "./../../Redux/Reducers/product-reducer";
+import productReducer, {
+  removeAllProduct,
+} from "./../../Redux/Reducers/product-reducer";
 import CheckoutCard from "./Components/CheckoutCard";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -17,6 +19,7 @@ const Checkout = () => {
     console.log(data);
     dispatch(addOrder(data));
     toast.success("Заказ успешно оформлен!");
+    dispatch(removeAllProduct(data));
     setShow(!show);
     reset();
   };
