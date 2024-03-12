@@ -108,7 +108,7 @@ const Header = () => {
           {show ? (
             <div className="">
               {value.length > 2 ? (
-                <ul className="flex flex-col z-10 absolute w-[100.5%] left-[-2px] top-[100%] inset-0 bg-white">
+                <ul className="flex flex-col h-[400px] overflow-auto z-10 absolute w-[100.5%] left-[-2px] top-[100%] inset-0 bg-white">
                   {data?.map((item) => (
                     <button key={item.id} onClick={() => handleSearch(item.id)}>
                       <li className="flex items-center gap-5 w-full h-[100px] p-1 bg-white border-2">
