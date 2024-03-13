@@ -25,7 +25,7 @@ const Checkout = () => {
   };
 
   return (
-    <div className="container flex items-start">
+    <div className="container flex items-start mt-10">
       <div className="w-1/2 border-r-2 pr-4">
         <h1 className="text-4xl font-semibold mb-14 text-left">
           Оформление заказа
