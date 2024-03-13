@@ -13,7 +13,7 @@ const Banner = () => {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    speed: 5000,
+    speed: 3000,
     autoplaySpeed: 4000,
     cssEase: "linear",
     swipeToSlide: true,

@@ -10,8 +10,8 @@ const Discount = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2500,
-    autoplaySpeed: 4000,
+    speed: 2000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     focusOnSelect: true,
   };
