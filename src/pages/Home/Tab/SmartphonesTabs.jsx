@@ -2,6 +2,7 @@ import React from "react";
 import useGetProducts from "../Service/Query/useGetProducts";
 import TabCard from "./Components/TabCard";
 import { Link } from "react-router-dom";
+import TabCardSkeleton from "./Components/TabCardSkeleton";
 
 const SmartphonesTabs = () => {
   const { data, isLoading } = useGetProducts();
@@ -11,7 +12,7 @@ const SmartphonesTabs = () => {
       <div className="py-[40px] flex  flex-col gap-8">
         {data?.slice(0, 3).map((item) => (
           <Link key={item.id} to={`/products/${item.id}`}>
-            <TabCard {...item} />
+            {isLoading ? <TabCardSkeleton/> : <TabCard {...item} />}
           </Link>
         ))}
       </div>

@@ -3,6 +3,7 @@ import useGetCategories from "../Service/Query/UseGetCategories";
 import CategoryCard from "./Components/CategoryCard";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import CategoryCardSkeleton from "./Components/CategoryCardSkeleton";
 
 const Categories = () => {
   const { data, isLoading } = useGetCategories();
@@ -25,7 +26,11 @@ const Categories = () => {
             {data?.map((item) => (
               <li key={item.id}>
                 <Link to={`/category/${item.datakey}`}>
-                  <CategoryCard {...item} />
+                  {isLoading ? (
+                    <CategoryCardSkeleton />
+                  ) : (
+                    <CategoryCard {...item} />
+                  )}
                 </Link>
               </li>
             ))}

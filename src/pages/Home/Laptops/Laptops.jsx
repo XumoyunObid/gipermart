@@ -4,6 +4,7 @@ import MainCard from "../../../Components/Cards/MainCard";
 import useGetLaptops from "../Service/Query/UseGetLaptops";
 import Slider from "react-slick";
 import { SampleNextArrow, SamplePrevArrow } from "../../../Components/Arrows";
+import MainCardSkeleton from "../../../Components/Cards/MainCardSkeleton";
 
 const Laptops = () => {
   const { data, isLoading } = useGetLaptops();
@@ -29,7 +30,7 @@ const Laptops = () => {
           <Slider {...settings}>
             {data?.map((item) => (
               <li key={item.id}>
-                <MainCard {...item} />
+                {isLoading ? <MainCardSkeleton /> : <MainCard {...item} />}
               </li>
             ))}
           </Slider>
